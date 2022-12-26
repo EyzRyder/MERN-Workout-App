@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  background: #f1f1f1;
+  margin: 0;
+  font-family: "Poppins";
+}
+
+.home {
+  @apply grid gap-[30px];
+  grid-template-columns: 3fr 1fr;
+}
+
+.input {
+  @apply block p-3 mt-3 mb-5 w-full border border-solid border-[#ddd] rounded box-border
+}
+
+.error {
+  @apply border border-solid border-error
+}
