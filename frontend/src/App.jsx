@@ -9,20 +9,14 @@ import {
 import Home from './pages/Home';
 
 import RootLayout from './layouts/RootLayout';
+import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
 
     <Route path='/' element={<RootLayout />}>
       <Route index element={<Home />} />
-
-      {/* <Route path='careers' element={<CareersLayout />}>
-        <Route index element={<Careers />} loader={careersLoader} />
-        <Route path=':id' element={<CareerDetails />} loader={careerDetailsLoader} />
-      </Route> */}
-
-      {/* <Route path='*' element={<NotFound />} /> */}
-
+      <Route path='*' element={<NotFound />} />
     </Route>
   )
 )

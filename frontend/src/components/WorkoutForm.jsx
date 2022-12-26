@@ -22,13 +22,13 @@ const WorkoutForm = () => {
                 setIsPending(false);
                 setError(null);
                 setTitle("");
+                setEmptyFields([])
                 setReps("");
                 dispatch({ type: 'CREATE_WORKOUTS', payload: response.data })
             }).catch((err) => {
                 setError(err.response.data.error);
                 setEmptyFields(err.response.data.emptyFields)
                 setIsPending(false)
-                console.log(err);
             });
         
         
@@ -36,12 +36,12 @@ const WorkoutForm = () => {
 
     return (
         <form className="" onSubmit={handleSubmit}>
-            <h3>Add a new Workout</h3>
+            <h3 className="text-2xl font-semibold">Add a new Workout</h3>
             <label className="block">Exercise Title:</label>
             <input className={emptyFields.includes('title') ? "error input" : "input"} type="text" onChange={(e) => setTitle(e.target.value)} value={title} />
             <label className="block">Exercise reps:</label>
             <input className={emptyFields.includes('reps') ? "error input" : "input"} type="number" onChange={(e) => setReps(e.target.value)} value={reps}  />
-            {!isPending && <button className="bg-primary border-0 p-3 text-[#fff] font-body rounded cursor-pointer">add Workout</button>}
+            {!isPending && <button className="bg-primary border-0 p-3 text-[#fff] font-body rounded cursor-pointer transition-transform  hover:scale-110 hover:bg-[#4edeb5]">add Workout</button>}
             {isPending && <button className="bg-primary border-0 p-3 text-[#fff] font-body rounded cursor-pointer" disabled>adding Workout</button>}
             {error && <div className="text-error p-3 bg-[#ffefef] border border-solid border-[#ddd] rounded my-5 mx-0">{error}</div>}
         </form>
