@@ -2,7 +2,6 @@ const express = require('express');
 const workoutController = require('../controllers/workoutController');
 const router = express.Router();
 
-//  blog routes
 
 router.get('/', workoutController.getWorkouts);
 

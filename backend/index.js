@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require("cors");
 const mongoose = require('mongoose');
 const workoutRoutes = require('./routes/workoutRoutes');
+const userRoutes = require('./routes/userRoutes');
 const app = express();
 const PORT = process.env.PORT;
 
@@ -14,6 +15,8 @@ app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 })
+
+app.use('/api/user', userRoutes)
 
 app.use('/api/workouts', workoutRoutes)
 
