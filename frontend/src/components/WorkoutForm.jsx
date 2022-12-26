@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Axios from 'axios';
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
+import Loader from "./Loader";
 
 
 const WorkoutForm = () => {
@@ -13,7 +14,7 @@ const WorkoutForm = () => {
     const [emptyFields, setEmptyFields] = useState([]);
 
 
-    const handleSubmit = async (e) => { 
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsPending(true);
 
@@ -30,8 +31,8 @@ const WorkoutForm = () => {
                 setEmptyFields(err.response.data.emptyFields)
                 setIsPending(false)
             });
-        
-        
+
+
     }
 
     return (
@@ -40,9 +41,9 @@ const WorkoutForm = () => {
             <label className="block">Exercise Title:</label>
             <input className={emptyFields.includes('title') ? "error input" : "input"} type="text" onChange={(e) => setTitle(e.target.value)} value={title} />
             <label className="block">Exercise reps:</label>
-            <input className={emptyFields.includes('reps') ? "error input" : "input"} type="number" onChange={(e) => setReps(e.target.value)} value={reps}  />
+            <input className={emptyFields.includes('reps') ? "error input" : "input"} type="number" onChange={(e) => setReps(e.target.value)} value={reps} />
             {!isPending && <button className="bg-primary border-0 p-3 text-[#fff] font-body rounded cursor-pointer transition-transform  hover:scale-110 hover:bg-[#4edeb5]">add Workout</button>}
-            {isPending && <button className="bg-primary border-0 p-3 text-[#fff] font-body rounded cursor-pointer" disabled>adding Workout</button>}
+            {isPending && <Loader />}
             {error && <div className="text-error p-3 bg-[#ffefef] border border-solid border-[#ddd] rounded my-5 mx-0">{error}</div>}
         </form>
     );
