@@ -23,3 +23,15 @@ body {
 .error {
   @apply border border-solid border-error
 }
+
+.active {
+  @apply bg-primary text-white
+}
+
+.NavLink {
+  @apply ml-4 p-2 rounded-md hover:text-white hover:bg-primary
+}
+
+form.signup, form.login{
+  @apply m-10 p-5 bg-[#fff] rounded relative flex flex-col items-center w-[700px] 
+}
