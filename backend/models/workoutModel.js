@@ -3,11 +3,15 @@ const Schema = mongoose.Schema;
 
 const workoutSchema = new Schema({
     title: {
-        type: 'string',
+        type: String,
         require: true
     },
     reps: {
-        type: 'string',
+        type: String,
+        require: true
+    },
+    user_id: {
+        type: String,
         require: true
     }
 }, { timestamps: true });
