@@ -2,10 +2,12 @@ import { useState } from "react";
 import Axios from 'axios';
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
 import Loader from "./Loader";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const WorkoutForm = () => {
     const { dispatch } = useWorkoutContext()
+    const { user } = useAuthContext();
 
     const [title, setTitle] = useState("")
     const [reps, setReps] = useState("")
@@ -18,8 +20,18 @@ const WorkoutForm = () => {
         e.preventDefault();
         setIsPending(true);
 
-        Axios.post('http://localhost:3000/api/workouts', { title: title, reps: reps })
-            .then((response) => {
+        if (!user) {
+            setError("You must be logged in")
+            return setIsPending(false);
+        }
+        const workout = { title: title, reps: reps }
+
+        Axios.post('http://localhost:3000/api/workouts', { title, reps },
+            {
+                headers: {
+                    Authorization: `Bearer ${user.token}`
+                }
+            }).then((response) => {
                 setIsPending(false);
                 setError(null);
                 setTitle("");

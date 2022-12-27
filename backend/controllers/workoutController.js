@@ -11,7 +11,6 @@ const getWorkouts = async (req, res) => {
 
 const postWorkoutCreate = async (req, res) => {
     const { title, reps } = req.body
-
     let emptyFields = []
     if (!title) {
         emptyFields.push('title')

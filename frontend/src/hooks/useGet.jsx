@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import Axios from 'axios';
 import { useWorkoutContext } from "./useWorkoutsContext";
-
+import { useAuthContext } from "./useAuthContext";
 
 
 const useGet = (url) => {
-    const { workouts, dispatch } = useWorkoutContext()
+    const { workouts, dispatch } = useWorkoutContext();
+    const { user } = useAuthContext();
 
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
@@ -14,30 +15,37 @@ const useGet = (url) => {
     useEffect(() => {
         const abortCont = new AbortController();
 
-        Axios.get(url, { signal: abortCont.signal })
-            .then((response) => {
+        if (user) {
+            Axios.get(url, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`
+                },
+                signal: abortCont.signal  })
+                .then((response) => {
 
-            if (!response.statusText == "ok") {
-                throw Error('Could not get the data fot that resource');
-                }
-            
-                dispatch({ type: 'SET_WORKOUTS', payload: response.data })
-            // setData(response.data);
-            setIsPending(false)
+                    if (!response.statusText == "ok") {
+                        throw Error('Could not get the data fot that resource');
+                    }
 
-        }).catch((err) => {
+                    dispatch({ type: 'SET_WORKOUTS', payload: response.data })
+                    // setData(response.data);
+                    setIsPending(false)
 
-            if (err.name === 'CanceledError') {
-                console.log(err.message + "get")
-            } else {
-                setError(err.message);
-                setIsPending(false)
-            }
+                }).catch((err) => {
 
-        });
+                    if (err.name === 'CanceledError') {
+                        console.log(err.message + "get")
+                        setIsPending(false)
+                    } else {
+                        setError(err.message);
+                        setIsPending(false)
+                    }
+
+                });
+        }
 
         return () => abortCont.abort();
-    }, [dispatch]);
+    }, [dispatch, user]);
     return { workouts, isPending, error }
 }
 
