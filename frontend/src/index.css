@@ -12,8 +12,8 @@ body {
 }
 
 .home {
-  @apply grid gap-[30px];
-  grid-template-columns: 3fr 1fr;
+  @apply grid gap-[30px] md:grid-cols-[3fr,1fr];
+  /* grid-template-columns: 3fr 1fr; */
 }
 
 .input {

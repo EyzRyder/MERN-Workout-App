@@ -11,7 +11,7 @@ export default function RootLayout() {
         logout()
     }
     return (
-        <div className="w-screen h-screen" >
+        <div className="w-screen min-h-screen" >
             <header className="bg-[#fff]">
                 <div className="m-0 py-3 px-5 flex items-center justify-between">
                     <Link to='/' className="text-3xl font-bold text-[#333]">Workout</Link>
