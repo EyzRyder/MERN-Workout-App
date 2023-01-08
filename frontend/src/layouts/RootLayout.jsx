@@ -18,7 +18,7 @@ export default function RootLayout() {
 
                     <nav className="flex items-center">
                         {user && (
-                            <div>
+                            <div className="flex flex-col flex-1">
                             <span>{user.email}</span>
                             <button className="bg-[#fff] text-primary border-2 border-solid border-primary py-2 px-3 rounded cursor-pointer text-base ml-3" onClick={handleClick}>Log out</button>
                             </div>
