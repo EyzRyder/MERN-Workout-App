@@ -14,17 +14,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, './frontend/dist')));
-
-app.get("/", function (_, res) {
-    res.sendFile(
-        path.join(__dirname, ''),
-        function (err) {
-            res.status(500).send(err);
-        }
-    );
-});
-
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
@@ -33,6 +22,17 @@ app.use((req, res, next) => {
 app.use('/api/user', userRoutes);
 
 app.use('/api/workouts', workoutRoutes);
+
+app.use(express.static(path.join(__dirname, './frontend/dist')));
+
+app.get("*", function (_, res) {
+    res.sendFile(
+        path.join(__dirname, './frontend/dist/index.html'),
+        function (err) {
+            res.status(500).send(err);
+        }
+    );
+});
 
 mongoose.set("strictQuery", true);
 
