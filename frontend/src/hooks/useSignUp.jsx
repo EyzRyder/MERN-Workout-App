@@ -13,7 +13,7 @@ export const useSignUp = () => {
         setIsPending(true);
         setError(null);
 
-        Axios.post('http://localhost:3000/api/user/signup', { email, password })
+        Axios.post('/api/user/signup', { email, password })
             .then((response) => {
                 localStorage.setItem('user', JSON.stringify(response.data))
                 setIsPending(false);

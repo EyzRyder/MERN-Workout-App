@@ -9,7 +9,7 @@ const WorkoutDetails = ({ workout }) => {
 
     const handleClickToDelete = async () => {
         if(!user){ return}
-        const response = await Axios.delete(`http://localhost:3000/api/workouts/${workout._id}`, {
+        const response = await Axios.delete(`/api/workouts/${workout._id}`, {
             headers: {
                 Authorization: `Bearer ${user.token}`
             }

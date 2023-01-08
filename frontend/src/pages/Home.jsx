@@ -5,7 +5,7 @@ import useGet from "../hooks/useGet";
 
 function Home() {
 
-    const { workouts, isPending, error } = useGet('http://localhost:3000/api/workouts')
+    const { workouts, isPending, error } = useGet('/api/workouts')
 
 
     return (

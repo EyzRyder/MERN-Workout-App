@@ -26,7 +26,7 @@ const WorkoutForm = () => {
         }
         const workout = { title: title, reps: reps }
 
-        Axios.post('http://localhost:3000/api/workouts', { title, reps },
+        Axios.post('/api/workouts', { title, reps },
             {
                 headers: {
                     Authorization: `Bearer ${user.token}`
