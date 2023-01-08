@@ -33,5 +33,5 @@ body {
 }
 
 form.signup, form.login{
-  @apply m-10 p-5 bg-[#fff] rounded relative flex flex-col items-center w-[700px] 
+  @apply m-10 p-5 bg-[#fff] rounded relative flex flex-col items-center w-full md:w-[700px]  
 }

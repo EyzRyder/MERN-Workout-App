@@ -939,13 +939,19 @@ form.signup, form.login{
   position: relative;
   margin: 2.5rem;
   display: flex;
-  width: 700px;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   border-radius: 0.25rem;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding: 1.25rem;
+}
+
+@media (min-width: 768px){
+  form.signup, form.login{
+    width: 700px;
+  }
 }
 
 .hover\:scale-110:hover{
